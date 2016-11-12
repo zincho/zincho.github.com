@@ -201,7 +201,7 @@ class Thumbnail extends React.Component{
                     <p>{this.props.contents}</p>
                     {
                         this.props.link ?
-                        <p><a href={this.props.link} target="_blank">{this.props.link}</a></p>
+                        <a href={this.props.link} target="_blank"><p style={{whiteSpace: "normal", wordBreak: "break-all"}}>{this.props.link}</p></a>
                         : ""
                     }
                     <p><a href="#" className="btn btn-primary" role="button" onClick={this.handleClick.bind(null, this.props.tableId)}>일정표로 이동</a></p>
@@ -321,7 +321,7 @@ class PlanB extends React.Component{
             {
                 time: "13:30 ~ 14:10",
                 contents: "초량밀면 냠냠",
-                target: "choryang"
+                target: "choryang1"
             }
         ];
         return(
@@ -336,7 +336,7 @@ class PlanB extends React.Component{
                                 <Table data={tableData} id="tb_planB"/>
                                 <div className="row">
                                     <div className="col-xs-12">
-                                        <Thumbnail id="choryang" src="image/blog_1.jpg" title="초량밀면" contents="부산 3대밀면 개금밀면,가야밀면,초량밀면 중 초량밀면" link="http://thisweek92.tistory.com/161" tableId="tb_planB"/>
+                                        <Thumbnail id="choryang1" src="image/blog_1.jpg" title="초량밀면" contents="부산 3대밀면 개금밀면,가야밀면,초량밀면 중 초량밀면" link="http://thisweek92.tistory.com/161" tableId="tb_planB"/>
                                     </div>
                                 </div>
                             </div>
