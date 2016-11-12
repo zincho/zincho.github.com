@@ -58,7 +58,7 @@ class PlanButton extends React.Component{
 
         this.handleClickA = this.handleClickA.bind(this);
         this.handleClickB = this.handleClickB.bind(this);
-        this.handleClickC = this.handleClickC.bind(this);
+        //this.handleClickC = this.handleClickC.bind(this);
     }
 
     getStyle(type){
@@ -83,7 +83,7 @@ class PlanButton extends React.Component{
         this.setState(prevState => ({
             styleA: this.getStyle(1),
             styleB: this.getStyle(),
-            styleC: this.getStyle()
+            //styleC: this.getStyle()
         }));
 
         $("#planB").hide();
@@ -94,7 +94,7 @@ class PlanButton extends React.Component{
         this.setState(prevState => ({
             styleA: this.getStyle(),
             styleB: this.getStyle(1),
-            styleC: this.getStyle()
+            //styleC: this.getStyle()
         }));
 
         $("#planA").hide();
@@ -105,7 +105,7 @@ class PlanButton extends React.Component{
         this.setState(prevState => ({
             styleA: this.getStyle(),
             styleB: this.getStyle(),
-            styleC: this.getStyle(1)
+            //styleC: this.getStyle(1)
         }));
     }
 
@@ -116,7 +116,6 @@ class PlanButton extends React.Component{
                     <div className="col-xs-12" style={{padding: "0px"}}>
                         <span key="btn_1" className="label label-warning" style={this.state.styleA} onClick={this.handleClickA}>PlanA</span>
                         <span key="btn_2" className="label label-warning" style={this.state.styleB} onClick={this.handleClickB}>PlanB</span>
-                        <span key="btn_3" className="label label-warning" style={this.state.styleC} onClick={this.handleClickC}>PlanC</span>
                     </div>
                 </div>
             </div>
