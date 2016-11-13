@@ -845,24 +845,33 @@ ReactDOM.render(
         $("#planC").hide();
         $("#planZ").hide();
 
-        var audio = document.getElementById('audio');
+        function fakeClick(fn) {
+            var $a = $('<a href="#" id="fakeClick"></a>');
+                $a.bind("click", function(e) {
+                    e.preventDefault();
+                    fn();
+                });
 
-        /*
-        audio.addEventListener('click', function(){
-            audio.load();
-            
-            setTimeout(function(){
-                audio.play();
-            }, 3000);
-        }, false);
-        */
-        
-        audio.onclick = function(){
-            audio.load();
-            audio.play();
+            $("body").append($a);
+
+            var evt, 
+                el = $("#fakeClick").get(0);
+
+            if (document.createEvent) {
+                evt = document.createEvent("MouseEvents");
+                if (evt.initMouseEvent) {
+                    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                    el.dispatchEvent(evt);
+                }
+            }
+
+            $(el).remove();
         }
+        var video = $("#audio").get(0);
 
-        audio.click();
+        fakeClick(function() {
+            video.play();
+        });
     }
 );
 
