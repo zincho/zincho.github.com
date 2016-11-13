@@ -852,6 +852,7 @@ ReactDOM.render(
         });
 
         audio.play();
+    }
 );
 
 function debug(){
