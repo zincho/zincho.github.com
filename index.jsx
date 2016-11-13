@@ -845,34 +845,13 @@ ReactDOM.render(
         $("#planC").hide();
         $("#planZ").hide();
 
-        function fakeClick(fn) {
-            var $a = $('<a href="#" id="fakeClick"></a>');
-                $a.bind("click", function(e) {
-                    e.preventDefault();
-                    fn();
-                });
+        var audio = document.getElementById('audio');
 
-            $("body").append($a);
-
-            var evt, 
-                el = $("#fakeClick").get(0);
-
-            if (document.createEvent) {
-                evt = document.createEvent("MouseEvents");
-                if (evt.initMouseEvent) {
-                    evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    el.dispatchEvent(evt);
-                }
-            }
-
-            $(el).remove();
-        }
-        var video = $("#audio").get(0);
-
-        fakeClick(function() {
-            video.play();
+        audio.addEventListener('canplay', function() {
+            audio.play();
         });
-    }
+
+        audio.play();
 );
 
 function debug(){
