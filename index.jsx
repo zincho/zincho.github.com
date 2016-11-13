@@ -5,9 +5,13 @@ class Header extends React.Component{
                 <div className="container">
                     <div className="row">
                         <div className="col-xs12">
-                            <p style={{color: "#fff", fontSize: "3.7rem"}}>가자 브산으로!<span className="glyphicon glyphicon-plane" aria-hidden="true" style={{color: "hotPink"}}></span></p>
+                            <p style={{color: "#fff", fontSize: "3.7rem"}}>가자 브산으로!<span className="glyphicon glyphicon-plane" aria-hidden="true" style={{color: "hotPink"}}></span><span id="btn_audio" className="glyphicon glyphicon-music" aria-hidden="true" style={{color: "hotPink"}}></span></p>
                             <p style={{fontSize: "2rem"}}>초아라와 함께 떠나는 킹갓제네럴 부산여행</p>
+                            <audio id="audio" controls="" loop="loop">
+                                <source src="sound/Always_with_me.mp3" type="audio/mpeg" />
+                            </audio>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -34,13 +38,6 @@ class Emoji extends React.Component{
     render(){
         return(
             <div className="container">
-                <div className="row">
-                    <div className="col-xs-12">
-                        <audio id="audio" controls="controls" loop="loop">
-                            <source src="sound/Always_with_me.mp3" type="audio/mpeg" />
-                        </audio>
-                    </div>
-                </div>
                 <div className="row">
                     <div className="col-xs-6" style={{textAlign: "center"}}>
                         <img src="image/imo_1.gif" className="img-responsive" alt="" />
@@ -848,6 +845,12 @@ ReactDOM.render(
         $("#planB").hide();
         $("#planC").hide();
         $("#planZ").hide();
+
+        $("#btn_audio").click(function(){
+            var audio = document.getElementById("audio");
+            audio.load();
+            audio.play();
+        })
     }
 );
 
