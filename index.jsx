@@ -8,7 +8,7 @@ class Header extends React.Component{
                             <p style={{color: "#fff", fontSize: "3.7rem"}}>가자 브산으로!<span className="glyphicon glyphicon-plane" aria-hidden="true" style={{color: "hotPink"}}></span></p>
                             <p style={{fontSize: "2rem"}}>초아라와 함께 떠나는 킹갓제네럴 부산여행</p>
                         </div>
-                        <audio controls="" autoPlay="true" loop="loop" preload="auto">
+                        <audio id="audio" controls="" loop="loop">
                             <source src="sound/Always_with_me.mp3" type="audio/mpeg" />
                         </audio>
                     </div>
@@ -798,11 +798,6 @@ class PlanZ extends React.Component{
                                 </div>
                                 <div className="row">
                                     <div className="col-xs-12">
-                                        <ThumbnailList id="cowcow"/>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-xs-12">
                                         <ThumbnailList id="mipotrain"/>
                                     </div>
                                 </div>
@@ -849,6 +844,25 @@ ReactDOM.render(
         $("#planB").hide();
         $("#planC").hide();
         $("#planZ").hide();
+
+        var audio = document.getElementById('audio');
+
+        /*
+        audio.addEventListener('click', function(){
+            audio.load();
+            
+            setTimeout(function(){
+                audio.play();
+            }, 3000);
+        }, false);
+        */
+        
+        audio.onclick = function(){
+            audio.load();
+            audio.play();
+        }
+
+        audio.click();
     }
 );
 
