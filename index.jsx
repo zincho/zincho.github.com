@@ -288,10 +288,10 @@ class ThumbnailList extends React.Component{
                 thum = <Thumbnail id={this.props.id} src="image/blog_10.jpg" title="덩굴 아나고" contents="바다장어, 우리말로 붕장어 라고도 한다." link="http://blog.naver.com/dodoti/140197749744" tableId={this.props.tableId}/>
                 break;
             case "soonyangho":
-                thum = <Thumbnail id={this.props.id} src="image/blog_11.jpg" title="순양호" contents="회센터에 위치한 횟집" link="http://blog.naver.com/mpasdf/220790873757" tableId={this.props.tableId}/>
+                thum = <Thumbnail id={this.props.id} src="image/blog_12.jpg" title="순양호" contents="회센터에 위치한 횟집" link="http://blog.naver.com/mpasdf/220790873757" tableId={this.props.tableId}/>
                 break;
             case "eonyangbulgogi":
-                thum = <Thumbnail id={this.props.id} src="image/blog_12.jpg" title="부산집" contents="유명한 언양불고기 집" link="http://blog.naver.com/dodoti/140203823894" tableId={this.props.tableId}/>
+                thum = <Thumbnail id={this.props.id} src="image/blog_11.jpg" title="부산집" contents="유명한 언양불고기 집" link="http://blog.naver.com/dodoti/140203823894" tableId={this.props.tableId}/>
                 break;
             case "conan":
                 thum = <Thumbnail id={this.props.id} src="image/blog_13.jpg" title="추리문학관" contents="1992년에 개장한 추리문학관은 국내는 물론 국외에서도 찾아볼 수 없는 유일무이한 추리문학 전문도서관이다." link="http://blog.naver.com/g77775/220821051637" tableId={this.props.tableId}/>
