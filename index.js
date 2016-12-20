@@ -337,7 +337,7 @@ var ThumbnailList = function (_React$Component6) {
                     thum = React.createElement(Thumbnail, { id: this.props.id, src: "image/20per.gif", title: "20\uD37C", contents: "\uD0F1\uCEE4 \uBC18\uB300 \uBC29\uD5A5\uC73C\uB85C \uD53C\uC790 \uC548\uC804\uC9C0\uB300\uAC00 \uC0DD\uC131\uB418\uBA70 \uC67C\uCABD \uC624\uB978\uCABD(\uB79C\uB364?\uC778\uC9C0\uB294 \uD655\uC2E4\uD558\uC9C0 \uC54A\uB2E4. \uBCF4\uD1B5 \uC67C\uCABD \uBA3C\uC800 \uC2DC\uC791\uD558\uACE0 \uADF8 \uB2E4\uC74C\uC5D0 \uC624\uB978\uCABD\uC73C\uB85C \uAC00\uB294\uAC83\uC73C\uB85C \uD655\uC778\uD588\uC73C\uB098 \uC815\uD655\uD558\uC9C0 \uC54A\uB2E4.)\uC73C\uB85C \uBE60\uB974\uAC8C \uD53C\uC790\uC548\uC804\uC9C0\uB300\uAC00 \uC5F0\uC18D\uC73C\uB85C \uC0DD\uAE30\uBBC0\uB85C \uBAB9 \uB4A4\uAF41\uBB34\uB2C8\uC5D0 \uBC14\uC9DD\uBD99\uC5B4\uC11C \uBE60\uB978 \uBB34\uBE59\uBB34\uBE59\uBB34\uBE59" });
                     break;
                 case "after":
-                    thum = React.createElement(Thumbnail, { id: this.props.id, src: "image/leftright.gif", title: "\uC8FC\uC2DC\uD6C4\uAD11\uC5ED", contents: "\uC8FC\uC2DC\uD328\uD134\uC774 \uB05D\uB098\uACE0 \uAD11\uC5ED3\uBC88 \uAFCD\uC2A4\uAFCD\uC2A4\uAFCD\uC2A4\uD55C\uB2F9" });
+                    thum = React.createElement(Thumbnail, { id: this.props.id, src: "image/after.gif", title: "\uC8FC\uC2DC\uD6C4\uAD11\uC5ED", contents: "\uC8FC\uC2DC\uD328\uD134\uC774 \uB05D\uB098\uACE0 \uAD11\uC5ED3\uBC88 \uAFCD\uC2A4\uAFCD\uC2A4\uAFCD\uC2A4\uD55C\uB2F9" });
                     break;
                 default:
                     break;
