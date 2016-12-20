@@ -245,11 +245,50 @@ var Thumbnail = function (_React$Component5) {
 
         var _this7 = _possibleConstructorReturn(this, (Thumbnail.__proto__ || Object.getPrototypeOf(Thumbnail)).call(this, props));
 
+        _this7.superGif = null;
+
         _this7.handleClick = _this7.handleClick.bind(_this7);
+        _this7.onPlay = _this7.onPlay.bind(_this7);
+        _this7.onPause = _this7.onPause.bind(_this7);
+        _this7.onRestart = _this7.onRestart.bind(_this7);
+        _this7.onForward = _this7.onForward.bind(_this7);
+        _this7.onBack = _this7.onBack.bind(_this7);
         return _this7;
     }
 
     _createClass(Thumbnail, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var me = this;
+            this.superGif = new SuperGif({ gif: me.refs.gif });
+            this.superGif.load();
+        }
+    }, {
+        key: "onPlay",
+        value: function onPlay() {
+            this.superGif.play();
+        }
+    }, {
+        key: "onPause",
+        value: function onPause() {
+            this.superGif.pause();
+        }
+    }, {
+        key: "onRestart",
+        value: function onRestart() {
+            this.superGif.move_to(0);
+        }
+    }, {
+        key: "onForward",
+        value: function onForward() {
+            this.superGif.move_relative(1);
+        }
+    }, {
+        key: "onBack",
+        value: function onBack() {
+            this.superGif.move_relative(-1);
+        }
+    }, {
         key: "handleClick",
         value: function handleClick(target) {
             var offset = $("#" + target).offset();
@@ -261,7 +300,36 @@ var Thumbnail = function (_React$Component5) {
             return React.createElement(
                 "div",
                 { className: "thumbnail", style: { borderTopColor: "HotPink" }, id: this.props.id },
-                React.createElement("img", { src: this.props.src, alt: "" }),
+                React.createElement("img", { ref: "gif", src: "image/title.jpg", "data-animated_src": this.props.src, "data-auto_play": "0" }),
+                React.createElement(
+                    "a",
+                    { href: "javascript:;", onClick: this.onPause },
+                    "Pause"
+                ),
+                " |",
+                React.createElement(
+                    "a",
+                    { href: "javascript:;", onClick: this.onPlay },
+                    "Play"
+                ),
+                " |",
+                React.createElement(
+                    "a",
+                    { href: "javascript:;", onClick: this.onRestart },
+                    "Restart"
+                ),
+                " |",
+                React.createElement(
+                    "a",
+                    { href: "javascript:;", onClick: this.onForward },
+                    "Step forward"
+                ),
+                " |",
+                React.createElement(
+                    "a",
+                    { href: "javascript:;", onClick: this.onBack },
+                    "Step back"
+                ),
                 React.createElement(
                     "div",
                     { className: "caption" },
