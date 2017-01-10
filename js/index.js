@@ -8,8 +8,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Header = function (_React$Component) {
-    _inherits(Header, _React$Component);
+var Video = function (_React$Component) {
+    _inherits(Video, _React$Component);
+
+    function Video() {
+        _classCallCheck(this, Video);
+
+        return _possibleConstructorReturn(this, (Video.__proto__ || Object.getPrototypeOf(Video)).apply(this, arguments));
+    }
+
+    _createClass(Video, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "video",
+                { controls: true, preload: "metadata", style: { width: "100%", maxWidth: "640px", height: "auto" } },
+                React.createElement("source", { src: this.props.src, type: "video/mp4" })
+            );
+        }
+    }]);
+
+    return Video;
+}(React.Component);
+
+var Header = function (_React$Component2) {
+    _inherits(Header, _React$Component2);
 
     function Header() {
         _classCallCheck(this, Header);
@@ -54,8 +77,8 @@ var Header = function (_React$Component) {
     return Header;
 }(React.Component);
 
-var Contents = function (_React$Component2) {
-    _inherits(Contents, _React$Component2);
+var Contents = function (_React$Component3) {
+    _inherits(Contents, _React$Component3);
 
     function Contents() {
         _classCallCheck(this, Contents);
@@ -87,17 +110,13 @@ var Contents = function (_React$Component2) {
                                     React.createElement(
                                         "h1",
                                         { className: "panel-title" },
-                                        "\uADF8\uB8E8\uC871"
+                                        "\uADF8\uB8E8\uC871 2017-01-10"
                                     )
                                 ),
                                 React.createElement(
                                     "div",
-                                    { className: "panel-body" },
-                                    React.createElement(
-                                        "a",
-                                        { href: "http://bns.plaync.com/board/job/summoner/article/7228874", target: "blank" },
-                                        "\uC18C\uD658\uC0AC \uC2DC\uC810 \uC218\uC5FC\uBFCC\uB9AC \uC601\uC0C1 \uD14D\uC2A4\uD2B8 \uC124\uBA85 \uD3EC\uD568"
-                                    )
+                                    { className: "panel-body", style: { textAlign: "center" } },
+                                    React.createElement(Video, { src: "http://zinnas.ipdisk.co.kr/publist/VOL1/zinshare/170108.%EC%B6%9C%EB%B0%9C!%20%EB%B9%84%EB%94%94%EC%98%A4%20%EC%97%AC%ED%96%89.H264.AAC.720p-CineBus.mp4" })
                                 )
                             )
                         )
@@ -110,8 +129,8 @@ var Contents = function (_React$Component2) {
     return Contents;
 }(React.Component);
 
-var App = function (_React$Component3) {
-    _inherits(App, _React$Component3);
+var App = function (_React$Component4) {
+    _inherits(App, _React$Component4);
 
     function App() {
         _classCallCheck(this, App);
