@@ -22,7 +22,7 @@ var Video = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "video",
-                { controls: true, preload: "metadata", style: { width: "100%", maxWidth: "640px", height: "auto" } },
+                { controls: true, autobuffer: true, style: { width: "100%", maxWidth: "640px", height: "auto" } },
                 React.createElement("source", { src: this.props.src, type: "video/mp4" })
             );
         }
