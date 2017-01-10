@@ -22,7 +22,7 @@ var Video = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "video",
-                { src: this.props.src, controls: true, style: { width: "100%", maxWidth: "640px", height: "auto" } },
+                { src: this.props.src, controls: "controls", style: { width: "100%", maxWidth: "640px", height: "auto" } },
                 "\uC9C0\uC6D0\uD558\uC9C0 \uC54A\uB294 \uBE0C\uB77C\uC6B0\uC800"
             );
         }
