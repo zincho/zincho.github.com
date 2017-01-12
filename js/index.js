@@ -18,12 +18,34 @@ var Video = function (_React$Component) {
     }
 
     _createClass(Video, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            /*
+            videojs("video", {}, function(){
+              });
+            */
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
-                "video",
-                { src: this.props.src, controls: "controls", style: { width: "100%", maxWidth: "640px", height: "auto" } },
-                "\uC9C0\uC6D0\uD558\uC9C0 \uC54A\uB294 \uBE0C\uB77C\uC6B0\uC800"
+                "div",
+                { style: { maxWidth: "640px", height: "auto", margin: "auto" } },
+                React.createElement(
+                    "video",
+                    { className: "video-js vjs-default-skin vjs-16-9", controls: true, preload: "auto", width: "640", height: "264", "data-setup": '{}' },
+                    React.createElement("source", { src: this.props.src, type: "video/mp4" }),
+                    React.createElement(
+                        "p",
+                        { className: "vjs-no-js" },
+                        "To view this video please enable JavaScript, and consider upgrading to a web browser that",
+                        React.createElement(
+                            "a",
+                            { href: "http://videojs.com/html5-video-support/", target: "_blank" },
+                            "supports HTML5 video"
+                        )
+                    )
+                )
             );
         }
     }]);
@@ -110,13 +132,13 @@ var Contents = function (_React$Component3) {
                                     React.createElement(
                                         "h1",
                                         { className: "panel-title" },
-                                        "\uADF8\uB8E8\uC871 2017-01-10"
+                                        "\uADF8\uB8E8\uC871 2017-01-11"
                                     )
                                 ),
                                 React.createElement(
                                     "div",
-                                    { className: "panel-body", style: { textAlign: "center" } },
-                                    React.createElement(Video, { src: "http://zinnas.ipdisk.co.kr/publist/VOL1/zinshare/170108.%EC%B6%9C%EB%B0%9C!%20%EB%B9%84%EB%94%94%EC%98%A4%20%EC%97%AC%ED%96%89.H264.AAC.720p-CineBus.mp4" })
+                                    { className: "panel-body" },
+                                    React.createElement(Video, { src: "http://zinnas.ipdisk.co.kr:80/publist/VOL1/zinshare/Blade%20&%20Soul%20(Korea)%202017.01.11%20-%2018.13.04.08.mp4" })
                                 )
                             )
                         )
