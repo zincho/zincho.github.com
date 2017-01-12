@@ -31,17 +31,21 @@ var Video = function (_React$Component) {
         key: "render",
         value: function render() {
             return React.createElement(
-                "video",
-                { className: "video-js vjs-default-skin vjs-16-9", controls: true, preload: "auto", width: "640", height: "264", "data-setup": '{}' },
-                React.createElement("source", { src: this.props.src, type: "video/mp4" }),
+                "div",
+                { style: { width: "100%", maxWidth: "640px", height: "auto", margin: "auto" } },
                 React.createElement(
-                    "p",
-                    { className: "vjs-no-js" },
-                    "To view this video please enable JavaScript, and consider upgrading to a web browser that",
+                    "video",
+                    { className: "video-js vjs-default-skin vjs-16-9", controls: true, preload: "auto", width: "640", height: "264", "data-setup": '{}' },
+                    React.createElement("source", { src: this.props.src, type: "video/mp4" }),
                     React.createElement(
-                        "a",
-                        { href: "http://videojs.com/html5-video-support/", target: "_blank" },
-                        "supports HTML5 video"
+                        "p",
+                        { className: "vjs-no-js" },
+                        "To view this video please enable JavaScript, and consider upgrading to a web browser that",
+                        React.createElement(
+                            "a",
+                            { href: "http://videojs.com/html5-video-support/", target: "_blank" },
+                            "supports HTML5 video"
+                        )
                     )
                 )
             );
