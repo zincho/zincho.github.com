@@ -24,26 +24,24 @@ var Video = function (_React$Component) {
             videojs("video", {}, function(){
               });
             */
+
+            // <div style={{width: "100%", maxWidth: "640px", height: "auto", margin: "auto"}}>
         }
     }, {
         key: "render",
         value: function render() {
             return React.createElement(
-                "div",
-                { style: { width: "100%", maxWidth: "640px", height: "auto", margin: "auto" } },
+                "video",
+                { className: "video-js vjs-default-skin vjs-16-9", controls: true, preload: "auto", width: "640", height: "264", "data-setup": '{}' },
+                React.createElement("source", { src: this.props.src, type: "video/mp4" }),
                 React.createElement(
-                    "video",
-                    { className: "video-js vjs-default-skin vjs-16-9", controls: true, preload: "auto", width: "640", height: "264", "data-setup": '{}' },
-                    React.createElement("source", { src: this.props.src, type: "video/mp4" }),
+                    "p",
+                    { className: "vjs-no-js" },
+                    "To view this video please enable JavaScript, and consider upgrading to a web browser that",
                     React.createElement(
-                        "p",
-                        { className: "vjs-no-js" },
-                        "To view this video please enable JavaScript, and consider upgrading to a web browser that",
-                        React.createElement(
-                            "a",
-                            { href: "http://videojs.com/html5-video-support/", target: "_blank" },
-                            "supports HTML5 video"
-                        )
+                        "a",
+                        { href: "http://videojs.com/html5-video-support/", target: "_blank" },
+                        "supports HTML5 video"
                     )
                 )
             );
