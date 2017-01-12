@@ -30,7 +30,7 @@ var Video = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "div",
-                { style: { maxWidth: "640px", height: "auto", margin: "auto" } },
+                { style: { width: "100%", maxWidth: "640px", height: "auto", margin: "auto" } },
                 React.createElement(
                     "video",
                     { className: "video-js vjs-default-skin vjs-16-9", controls: true, preload: "auto", width: "640", height: "264", "data-setup": '{}' },
