@@ -2,11 +2,39 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Helper = function () {
+    function Helper(props) {
+        _classCallCheck(this, Helper);
+
+        this.state = {
+            openPanel: null,
+            openVideo: null,
+            videoData: null
+        };
+    }
+
+    _createClass(Helper, [{
+        key: "setState",
+        value: function setState(state, value) {
+            this.state[state] = value;
+        }
+    }, {
+        key: "getState",
+        value: function getState(state) {
+            return this.state[state];
+        }
+    }]);
+
+    return Helper;
+}();
+
+var helper = new Helper();
 
 var Video = function (_React$Component) {
     _inherits(Video, _React$Component);
@@ -18,14 +46,15 @@ var Video = function (_React$Component) {
     }
 
     _createClass(Video, [{
+        key: "dispose",
+        value: function dispose() {
+            videojs(this.refs.video).dispose();
+        }
+    }, {
         key: "componentDidMount",
         value: function componentDidMount() {
-            /*
-            videojs("video", {}, function(){
-              });
-            */
-
-            // <div style={{width: "100%", maxWidth: "640px", height: "auto", margin: "auto"}}>
+            helper.setState("openVideo", this);
+            videojs(this.refs.video);
         }
     }, {
         key: "render",
@@ -35,7 +64,7 @@ var Video = function (_React$Component) {
                 { style: { width: "100%", maxWidth: "640px", height: "auto", margin: "auto" } },
                 React.createElement(
                     "video",
-                    { className: "video-js vjs-default-skin vjs-16-9", controls: true, preload: "auto", width: "640", height: "264", "data-setup": '{}' },
+                    { ref: "video", id: "bs_video", className: "video-js vjs-default-skin vjs-16-9", controls: true, preload: "auto", width: "640", height: "264", "data-setup": '{}' },
                     React.createElement("source", { src: this.props.src, type: "video/mp4" }),
                     React.createElement(
                         "p",
@@ -55,8 +84,82 @@ var Video = function (_React$Component) {
     return Video;
 }(React.Component);
 
-var Header = function (_React$Component2) {
-    _inherits(Header, _React$Component2);
+var VideoPannel = function (_React$Component2) {
+    _inherits(VideoPannel, _React$Component2);
+
+    function VideoPannel(props) {
+        _classCallCheck(this, VideoPannel);
+
+        var _this2 = _possibleConstructorReturn(this, (VideoPannel.__proto__ || Object.getPrototypeOf(VideoPannel)).call(this, props));
+
+        _this2.state = {
+            body: null
+        };
+
+        _this2.handleClick = _this2.handleClick.bind(_this2);
+        return _this2;
+    }
+
+    _createClass(VideoPannel, [{
+        key: "handleClick",
+        value: function handleClick() {
+            if (helper.getState("openPanel") === this) return;
+            if (helper.getState("openPanel") !== null) helper.getState("openPanel").removeBody();
+
+            this.appendBody();
+
+            helper.setState("openPanel", this);
+        }
+    }, {
+        key: "createBody",
+        value: function createBody() {
+            return React.createElement(
+                "div",
+                { className: "panel-body" },
+                React.createElement(Video, { src: this.props.src })
+            );
+        }
+    }, {
+        key: "appendBody",
+        value: function appendBody() {
+            this.setState({
+                body: this.createBody()
+            });
+        }
+    }, {
+        key: "removeBody",
+        value: function removeBody() {
+            helper.getState("openVideo").dispose();
+
+            this.setState({
+                body: null
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { className: "panel panel-danger" },
+                React.createElement(
+                    "div",
+                    { ref: "header", className: "panel-heading", onClick: this.handleClick, style: { cursor: "pointer" } },
+                    React.createElement(
+                        "h1",
+                        { className: "panel-title" },
+                        this.props.title + " " + this.props.date
+                    )
+                ),
+                this.state.body
+            );
+        }
+    }]);
+
+    return VideoPannel;
+}(React.Component);
+
+var Header = function (_React$Component3) {
+    _inherits(Header, _React$Component3);
 
     function Header() {
         _classCallCheck(this, Header);
@@ -101,16 +204,57 @@ var Header = function (_React$Component2) {
     return Header;
 }(React.Component);
 
-var Contents = function (_React$Component3) {
-    _inherits(Contents, _React$Component3);
+var Contents = function (_React$Component4) {
+    _inherits(Contents, _React$Component4);
 
-    function Contents() {
+    function Contents(props) {
         _classCallCheck(this, Contents);
 
-        return _possibleConstructorReturn(this, (Contents.__proto__ || Object.getPrototypeOf(Contents)).apply(this, arguments));
+        var _this4 = _possibleConstructorReturn(this, (Contents.__proto__ || Object.getPrototypeOf(Contents)).call(this, props));
+
+        _this4.state = {
+            videoData: null,
+            culIdx: 0,
+            maxIdx: 0,
+            loadIdx: 10
+        };
+
+        _this4.initState();
+        return _this4;
     }
 
     _createClass(Contents, [{
+        key: "initState",
+        value: function initState() {
+            this.state.videoData = helper.getState("videoData");
+            this.state.maxIdx = this.state.videoData.length;
+        }
+    }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() == $(document).height() - $(window).height()) {}
+            });
+        }
+    }, {
+        key: "createVideoPannel",
+        value: function createVideoPannel(idx) {
+            var loadIdx = idx + this.state.loadIdx <= idx + this.state.maxIdx ? idx + this.state.loadIdx : idx + this.state.maxIdx;
+            var videoData = [];
+
+            for (var i = idx; i < loadIdx; i++) {
+                videoData.push(this.state.videoData[i]);
+            }
+
+            return videoData.map(function (obj, idx) {
+                return React.createElement(
+                    "div",
+                    { className: "col-xs-12", key: idx },
+                    React.createElement(VideoPannel, { title: obj.title, date: obj.date, src: obj.src })
+                );
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
@@ -122,28 +266,7 @@ var Contents = function (_React$Component3) {
                     React.createElement(
                         "div",
                         { className: "row" },
-                        React.createElement(
-                            "div",
-                            { className: "col-xs-12" },
-                            React.createElement(
-                                "div",
-                                { className: "panel panel-danger" },
-                                React.createElement(
-                                    "div",
-                                    { className: "panel-heading" },
-                                    React.createElement(
-                                        "h1",
-                                        { className: "panel-title" },
-                                        "\uADF8\uB8E8\uC871 2017-01-11"
-                                    )
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "panel-body" },
-                                    React.createElement(Video, { src: "http://zinnas.ipdisk.co.kr:80/publist/VOL1/zinshare/Blade%20&%20Soul%20(Korea)%202017.01.11%20-%2018.13.04.08.mp4" })
-                                )
-                            )
-                        )
+                        this.createVideoPannel()
                     )
                 )
             );
@@ -153,8 +276,8 @@ var Contents = function (_React$Component3) {
     return Contents;
 }(React.Component);
 
-var App = function (_React$Component4) {
-    _inherits(App, _React$Component4);
+var App = function (_React$Component5) {
+    _inherits(App, _React$Component5);
 
     function App() {
         _classCallCheck(this, App);
@@ -177,4 +300,8 @@ var App = function (_React$Component4) {
     return App;
 }(React.Component);
 
-ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
+$.getJSON("json/video.json", function (json) {
+    helper.setState("videoData", json.data);
+
+    ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
+});
