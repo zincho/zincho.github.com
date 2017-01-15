@@ -210,43 +210,13 @@ var Contents = function (_React$Component4) {
     function Contents(props) {
         _classCallCheck(this, Contents);
 
-        var _this4 = _possibleConstructorReturn(this, (Contents.__proto__ || Object.getPrototypeOf(Contents)).call(this, props));
-
-        _this4.state = {
-            videoData: null,
-            culIdx: 0,
-            maxIdx: 0,
-            loadIdx: 10
-        };
-
-        _this4.initState();
-        return _this4;
+        return _possibleConstructorReturn(this, (Contents.__proto__ || Object.getPrototypeOf(Contents)).call(this, props));
     }
 
     _createClass(Contents, [{
-        key: "initState",
-        value: function initState() {
-            this.state.videoData = helper.getState("videoData");
-            this.state.maxIdx = this.state.videoData.length;
-        }
-    }, {
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            $(window).scroll(function () {
-                if ($(window).scrollTop() == $(document).height() - $(window).height()) {}
-            });
-        }
-    }, {
         key: "createVideoPannel",
-        value: function createVideoPannel(idx) {
-            var loadIdx = idx + this.state.loadIdx <= idx + this.state.maxIdx ? idx + this.state.loadIdx : idx + this.state.maxIdx;
-            var videoData = [];
-
-            for (var i = idx; i < loadIdx; i++) {
-                videoData.push(this.state.videoData[i]);
-            }
-
-            return videoData.map(function (obj, idx) {
+        value: function createVideoPannel() {
+            return helper.getState("videoData").map(function (obj, idx) {
                 return React.createElement(
                     "div",
                     { className: "col-xs-12", key: idx },
@@ -302,6 +272,8 @@ var App = function (_React$Component5) {
 
 $.getJSON("json/video.json", function (json) {
     helper.setState("videoData", json.data);
+
+    console.log(json);
 
     ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
 });
