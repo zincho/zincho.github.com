@@ -270,10 +270,6 @@ var App = function (_React$Component5) {
     return App;
 }(React.Component);
 
-$.getJSON("json/video.json", function (json) {
-    helper.setState("videoData", json.data);
+helper.setState("videoData", bs_video);
 
-    console.log(json);
-
-    ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
-});
+ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
