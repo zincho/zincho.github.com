@@ -8,8 +8,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var disqus_config;
-
 var Helper = function () {
     function Helper(props) {
         _classCallCheck(this, Helper);
@@ -103,20 +101,6 @@ var VideoPannel = function (_React$Component2) {
     }
 
     _createClass(VideoPannel, [{
-        key: "componentDidUpdate",
-        value: function componentDidUpdate() {
-            disqus_config = function disqus_config() {
-                this.page.url = "https://zincho.github.io/index.html?key=" + this.props.src;
-                //this.page.identifier = this.props.src;
-            };
-
-            var d = document,
-                s = d.createElement('script');
-            s.src = '//zincho.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        }
-    }, {
         key: "handleClick",
         value: function handleClick() {
             if (helper.getState("openPanel") === this) return;
@@ -129,12 +113,10 @@ var VideoPannel = function (_React$Component2) {
     }, {
         key: "createBody",
         value: function createBody() {
-
             return React.createElement(
                 "div",
                 { className: "panel-body" },
-                React.createElement(Video, { src: this.props.src }),
-                React.createElement("div", { id: "disqus_thread" })
+                React.createElement(Video, { src: this.props.src })
             );
         }
     }, {
@@ -291,5 +273,5 @@ var App = function (_React$Component5) {
 $.getJSON("json/video.json", function (json) {
     helper.setState("videoData", json.data);
 
-    ReactDOM.render(React.createElement(App, null), document.getElementById('root'), function () {});
+    ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
 });
