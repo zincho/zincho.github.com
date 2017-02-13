@@ -133,7 +133,12 @@ var VideoPannel = function (_React$Component2) {
     }, {
         key: "handleClick",
         value: function handleClick() {
-            if (helper.getState("openPanel") === this) return;
+            if (helper.getState("openPanel") === this) {
+                helper.getState("openPanel").removeBody();
+                helper.setState("openPanel", null);
+                return;
+            }
+
             if (helper.getState("openPanel") !== null) helper.getState("openPanel").removeBody();
 
             this.appendBody();
