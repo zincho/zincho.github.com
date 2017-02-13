@@ -105,6 +105,8 @@ var VideoPannel = function (_React$Component2) {
     _createClass(VideoPannel, [{
         key: "componentDidUpdate",
         value: function componentDidUpdate() {
+            if (!this.state.body) return;
+
             var me = this;
 
             if (window.DISQUS) {
