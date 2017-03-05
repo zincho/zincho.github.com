@@ -17,7 +17,8 @@ var Helper = function () {
         this.state = {
             openPanel: null,
             openVideo: null,
-            videoData: null
+            videoData: null,
+            toonData: null
         };
     }
 
@@ -86,26 +87,51 @@ var Video = function (_React$Component) {
     return Video;
 }(React.Component);
 
-var VideoPannel = function (_React$Component2) {
-    _inherits(VideoPannel, _React$Component2);
+var Image = function (_React$Component2) {
+    _inherits(Image, _React$Component2);
 
-    function VideoPannel(props) {
-        _classCallCheck(this, VideoPannel);
+    function Image() {
+        _classCallCheck(this, Image);
 
-        var _this2 = _possibleConstructorReturn(this, (VideoPannel.__proto__ || Object.getPrototypeOf(VideoPannel)).call(this, props));
+        return _possibleConstructorReturn(this, (Image.__proto__ || Object.getPrototypeOf(Image)).apply(this, arguments));
+    }
 
-        _this2.state = {
+    _createClass(Image, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement("img", { src: this.props.src, className: "img-responsive center-block", alt: "image" })
+            );
+        }
+    }]);
+
+    return Image;
+}(React.Component);
+
+var Pannel = function (_React$Component3) {
+    _inherits(Pannel, _React$Component3);
+
+    function Pannel(props) {
+        _classCallCheck(this, Pannel);
+
+        var _this3 = _possibleConstructorReturn(this, (Pannel.__proto__ || Object.getPrototypeOf(Pannel)).call(this, props));
+
+        _this3.state = {
             body: null
         };
 
-        _this2.handleClick = _this2.handleClick.bind(_this2);
-        return _this2;
+        _this3.handleClick = _this3.handleClick.bind(_this3);
+        return _this3;
     }
 
-    _createClass(VideoPannel, [{
+    _createClass(Pannel, [{
         key: "componentDidUpdate",
         value: function componentDidUpdate() {
             if (!this.state.body) return;
+
+            $('html, body').animate({ scrollTop: $(this.refs.header).offset().top }, 500);
 
             var me = this;
 
@@ -142,7 +168,6 @@ var VideoPannel = function (_React$Component2) {
             if (helper.getState("openPanel") !== null) helper.getState("openPanel").removeBody();
 
             this.appendBody();
-
             helper.setState("openPanel", this);
         }
     }, {
@@ -151,7 +176,6 @@ var VideoPannel = function (_React$Component2) {
             return React.createElement(
                 "div",
                 { className: "panel-body" },
-                React.createElement(Video, { src: this.props.src }),
                 React.createElement("div", { id: "disqus_thread" })
             );
         }
@@ -161,6 +185,55 @@ var VideoPannel = function (_React$Component2) {
             this.setState({
                 body: this.createBody()
             });
+        }
+    }, {
+        key: "removeBody",
+        value: function removeBody() {
+            this.setState({
+                body: null
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { className: "panel panel-danger" },
+                React.createElement(
+                    "div",
+                    { ref: "header", className: "panel-heading", onClick: this.handleClick, style: { cursor: "pointer" } },
+                    React.createElement(
+                        "h1",
+                        { className: "panel-title" },
+                        this.props.title + " " + this.props.date
+                    )
+                ),
+                this.state.body
+            );
+        }
+    }]);
+
+    return Pannel;
+}(React.Component);
+
+var VideoPannel = function (_Pannel) {
+    _inherits(VideoPannel, _Pannel);
+
+    function VideoPannel(props) {
+        _classCallCheck(this, VideoPannel);
+
+        return _possibleConstructorReturn(this, (VideoPannel.__proto__ || Object.getPrototypeOf(VideoPannel)).call(this, props));
+    }
+
+    _createClass(VideoPannel, [{
+        key: "createBody",
+        value: function createBody() {
+            return React.createElement(
+                "div",
+                { className: "panel-body" },
+                React.createElement(Video, { src: this.props.src }),
+                React.createElement("div", { id: "disqus_thread" })
+            );
         }
     }, {
         key: "removeBody",
@@ -192,10 +265,52 @@ var VideoPannel = function (_React$Component2) {
     }]);
 
     return VideoPannel;
-}(React.Component);
+}(Pannel);
 
-var Header = function (_React$Component3) {
-    _inherits(Header, _React$Component3);
+var ToonPannel = function (_Pannel2) {
+    _inherits(ToonPannel, _Pannel2);
+
+    function ToonPannel(props) {
+        _classCallCheck(this, ToonPannel);
+
+        return _possibleConstructorReturn(this, (ToonPannel.__proto__ || Object.getPrototypeOf(ToonPannel)).call(this, props));
+    }
+
+    _createClass(ToonPannel, [{
+        key: "createBody",
+        value: function createBody() {
+            return React.createElement(
+                "div",
+                { className: "panel-body" },
+                React.createElement(Image, { src: this.props.src }),
+                React.createElement("div", { id: "disqus_thread" })
+            );
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { className: "panel panel-success" },
+                React.createElement(
+                    "div",
+                    { ref: "header", className: "panel-heading", onClick: this.handleClick, style: { cursor: "pointer" } },
+                    React.createElement(
+                        "h1",
+                        { className: "panel-title" },
+                        this.props.title
+                    )
+                ),
+                this.state.body
+            );
+        }
+    }]);
+
+    return ToonPannel;
+}(Pannel);
+
+var Header = function (_React$Component4) {
+    _inherits(Header, _React$Component4);
 
     function Header() {
         _classCallCheck(this, Header);
@@ -240,16 +355,99 @@ var Header = function (_React$Component3) {
     return Header;
 }(React.Component);
 
-var Contents = function (_React$Component4) {
-    _inherits(Contents, _React$Component4);
+var Contents = function (_React$Component5) {
+    _inherits(Contents, _React$Component5);
 
     function Contents(props) {
         _classCallCheck(this, Contents);
 
-        return _possibleConstructorReturn(this, (Contents.__proto__ || Object.getPrototypeOf(Contents)).call(this, props));
+        var _this7 = _possibleConstructorReturn(this, (Contents.__proto__ || Object.getPrototypeOf(Contents)).call(this, props));
+
+        _this7.state = {
+            body: null,
+            tapColorA: "white",
+            tapColorB: "white"
+        };
+        return _this7;
     }
 
     _createClass(Contents, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.handleTapClick("video");
+        }
+    }, {
+        key: "handleTapClick",
+        value: function handleTapClick(id) {
+            if (helper.getState("openPanel") !== null) {
+                helper.getState("openPanel").removeBody();
+                helper.setState("openPanel", null);
+            }
+
+            switch (id) {
+                case "video":
+                    this.setState({ tapColorA: "Lime" });
+                    this.setState({ tapColorB: "white" });
+                    break;
+                case "toon":
+                    this.setState({ tapColorA: "white" });
+                    this.setState({ tapColorB: "Lime" });
+                    break;
+            }
+
+            this.removeBody();
+            this.createBody(id);
+        }
+    }, {
+        key: "createBody",
+        value: function createBody(id) {
+            var me = this;
+
+            switch (id) {
+                case "video":
+                    $.getJSON("json/video.json", function (json) {
+                        helper.setState("videoData", json.data);
+                        me.setState({
+                            body: me.createVideoPannel()
+                        });
+                    });
+                    break;
+                case "toon":
+                    $.getJSON("json/toon.json", function (json) {
+                        helper.setState("toonData", json.data);
+                        me.setState({
+                            body: me.createToonPannel()
+                        });
+                    });
+                    break;
+            }
+        }
+    }, {
+        key: "removeBody",
+        value: function removeBody() {
+            this.setState({
+                body: null
+            });
+        }
+    }, {
+        key: "createTabButton",
+        value: function createTabButton() {
+            return React.createElement(
+                "div",
+                { className: "col-xs-12" },
+                React.createElement(
+                    "button",
+                    { type: "button", className: "btn btn-info", style: { color: this.state.tapColorA }, onClick: this.handleTapClick.bind(this, "video") },
+                    "\uC601\uC0C1"
+                ),
+                React.createElement(
+                    "button",
+                    { type: "button", className: "btn btn-info", style: { marginLeft: "7px", color: this.state.tapColorB }, onClick: this.handleTapClick.bind(this, "toon") },
+                    "\uACF5\uB7B5\uD230"
+                )
+            );
+        }
+    }, {
         key: "createVideoPannel",
         value: function createVideoPannel() {
             return helper.getState("videoData").map(function (obj, idx) {
@@ -261,18 +459,34 @@ var Contents = function (_React$Component4) {
             });
         }
     }, {
+        key: "createToonPannel",
+        value: function createToonPannel() {
+            return helper.getState("toonData").map(function (obj, idx) {
+                return React.createElement(
+                    "div",
+                    { className: "col-xs-12", key: idx },
+                    React.createElement(ToonPannel, { title: obj.title, date: obj.date, src: obj.src })
+                );
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
                 "div",
-                { style: { marginTop: "50px" } },
+                { style: { marginTop: "30px" } },
                 React.createElement(
                     "div",
                     { className: "container" },
                     React.createElement(
                         "div",
                         { className: "row" },
-                        this.createVideoPannel()
+                        this.createTabButton()
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "row", style: { marginTop: "15px" } },
+                        this.state.body
                     )
                 )
             );
@@ -282,8 +496,8 @@ var Contents = function (_React$Component4) {
     return Contents;
 }(React.Component);
 
-var App = function (_React$Component5) {
-    _inherits(App, _React$Component5);
+var App = function (_React$Component6) {
+    _inherits(App, _React$Component6);
 
     function App() {
         _classCallCheck(this, App);
@@ -306,8 +520,4 @@ var App = function (_React$Component5) {
     return App;
 }(React.Component);
 
-$.getJSON("json/video.json", function (json) {
-    helper.setState("videoData", json.data);
-
-    ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
-});
+ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
