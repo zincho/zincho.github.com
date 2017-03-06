@@ -283,7 +283,7 @@ var ToonPannel = function (_Pannel2) {
                 "div",
                 { className: "panel-body", style: { paddingLeft: "0px", paddingRight: "0px" } },
                 React.createElement(Image, { src: this.props.src }),
-                React.createElement("div", { id: "disqus_thread" })
+                React.createElement("div", { id: "disqus_thread", style: { paddingLeft: "15px", paddingRight: "15px" } })
             );
         }
     }, {
