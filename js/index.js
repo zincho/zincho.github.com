@@ -336,14 +336,14 @@ var Header = function (_React$Component4) {
                             React.createElement(
                                 "p",
                                 { style: { color: "#fff", fontSize: "3.7rem" } },
-                                "\uBE14\uC18C\uACF5\uB7B5 \uBAA8\uC74C",
+                                "\uBE14\uC18C\uC640\uC778",
                                 React.createElement("span", { className: "glyphicon glyphicon-plane", "aria-hidden": "true", style: { color: "hotPink" } }),
                                 React.createElement("span", { id: "btn_audio", className: "glyphicon glyphicon-music", "aria-hidden": "true", style: { color: "hotPink" } })
                             ),
                             React.createElement(
                                 "p",
-                                { style: { fontSize: "2rem" } },
-                                "\uC554\uD2BC \uBAA8\uC74C"
+                                { style: { fontSize: "1.6rem" } },
+                                "\u77E5\u4E4B\u8005 \u4E0D\u5982\u597D\u4E4B\u8005 \u597D\u4E4B\u8005 \u4E0D\u5982\uF914\u4E4B\u8005"
                             )
                         )
                     )
