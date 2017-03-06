@@ -281,7 +281,7 @@ var ToonPannel = function (_Pannel2) {
         value: function createBody() {
             return React.createElement(
                 "div",
-                { className: "panel-body" },
+                { className: "panel-body", style: { paddingLeft: "0px", paddingRight: "0px" } },
                 React.createElement(Image, { src: this.props.src }),
                 React.createElement("div", { id: "disqus_thread" })
             );
