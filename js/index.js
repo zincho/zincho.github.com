@@ -57,7 +57,11 @@ var Video = function (_React$Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             helper.setState("openVideo", this);
-            videojs(this.refs.video);
+            //videojs(this.refs.video);
+
+            videojs(this.refs.video).ready(function () {
+                this.hotkeys();
+            });
         }
     }, {
         key: "render",
