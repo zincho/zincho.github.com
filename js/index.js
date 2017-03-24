@@ -139,26 +139,26 @@ var Pannel = function (_React$Component3) {
 
             var me = this;
 
-            if (window.DISQUS) {
+            /*
+            if(window.DISQUS){
                 DISQUS.reset({
                     reload: true,
-                    config: function config() {
+                    config: function() {
                         this.page.identifier = me.props.src;
                         this.page.url = "https://zincho.github.io/index.html#!" + me.props.src;
                     }
                 });
-            } else {
-                disqus_config = function disqus_config() {
+            }else{
+                disqus_config = function () {
                     this.page.url = "https://zincho.github.io/index.html#!" + me.props.src;
                     this.page.identifier = me.props.src;
                 };
-
-                var d = document,
-                    s = d.createElement('script');
-                s.src = '//zincho.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
+                  var d = document, s = d.createElement('script');
+                    s.src = '//zincho.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
             }
+            */
         }
     }, {
         key: "handleClick",
@@ -232,11 +232,17 @@ var VideoPannel = function (_Pannel) {
     _createClass(VideoPannel, [{
         key: "createBody",
         value: function createBody() {
+            /* 댓글 버전
+            <div className="panel-body">
+                <Video src={this.props.src} />
+                <div id="disqus_thread"></div>
+            </div>
+            */
+
             return React.createElement(
                 "div",
                 { className: "panel-body" },
-                React.createElement(Video, { src: this.props.src }),
-                React.createElement("div", { id: "disqus_thread" })
+                React.createElement(Video, { src: this.props.src })
             );
         }
     }, {
@@ -283,11 +289,17 @@ var ToonPannel = function (_Pannel2) {
     _createClass(ToonPannel, [{
         key: "createBody",
         value: function createBody() {
+            /* 댓글 버전
+            <div className="panel-body" style={{paddingLeft: "0px", paddingRight: "0px"}}>
+                <Image src={this.props.src} />
+                <div id="disqus_thread" style={{paddingLeft: "15px", paddingRight: "15px"}}></div>
+            </div>
+            */
+
             return React.createElement(
                 "div",
                 { className: "panel-body", style: { paddingLeft: "0px", paddingRight: "0px" } },
-                React.createElement(Image, { src: this.props.src }),
-                React.createElement("div", { id: "disqus_thread", style: { paddingLeft: "15px", paddingRight: "15px" } })
+                React.createElement(Image, { src: this.props.src })
             );
         }
     }, {
