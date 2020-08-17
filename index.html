@@ -18,245 +18,245 @@
     <div id="root"></div>
     <script type="text/javascript" src="js/index.js"></script>
     <pre>
-	'Microsoft Internet Controls Library
-	'Microsoft HTML Object Library
+'Microsoft Internet Controls Library
+'Microsoft HTML Object Library
 
-	Private startRow As Integer
-	Private targetYear As Integer
-	Private rowHeight As Integer
-	Private titleBgColor As Integer, titleFontSize As String, titleFontName As String
+Private startRow As Integer
+Private targetYear As Integer
+Private rowHeight As Integer
+Private titleBgColor As Integer, titleFontSize As String, titleFontName As String
 
-	Sub DoCrawling()
-	    Dim IE As Object, subject As Object
-	    OpenIE IE
+Sub DoCrawling()
+    Dim IE As Object, subject As Object
+    OpenIE IE
 
-	    startRow = 2
-	    targetYear = 2020
-	    rowHeight = 32
-	    titleBgColor = 22
-	    titleFontSize = 15
-	    titleFontName = "HY견고딕"
+    startRow = 2
+    targetYear = 2020
+    rowHeight = 32
+    titleBgColor = 22
+    titleFontSize = 15
+    titleFontName = "HY견고딕"
 
-	    강남구육아종합지원센터 IE
+    강남구육아종합지원센터 IE
 
-	    CloseIE IE
-	End Sub
+    CloseIE IE
+End Sub
 
-	Sub 강남구육아종합지원센터(ByRef IE As Object)
-	    Dim i As Integer, j As Integer, temp As Integer, mon1 As Integer, mon2 As Integer, mon3 As Integer, mon4 As Integer, mon5 As Integer, mon6 As Integer, mon7 As Integer, mon8 As Integer, mon9 As Integer, mon10 As Integer, mon11 As Integer, mon12 As Integer
+Sub 강남구육아종합지원센터(ByRef IE As Object)
+    Dim i As Integer, j As Integer, temp As Integer, mon1 As Integer, mon2 As Integer, mon3 As Integer, mon4 As Integer, mon5 As Integer, mon6 As Integer, mon7 As Integer, mon8 As Integer, mon9 As Integer, mon10 As Integer, mon11 As Integer, mon12 As Integer
 
-	    ChangeNavigate IE, "http://gncare.go.kr/gnccic_child/education/education3.php"
-	    Application.Wait DateAdd("s", 1, Now)
+    ChangeNavigate IE, "http://gncare.go.kr/gnccic_child/education/education3.php"
+    Application.Wait DateAdd("s", 1, Now)
 
-	    With Sheet1.Cells(startRow, 1)
-		.Value = "강남구육아종합지원센터"
-		.rowHeight = rowHeight
-		.Interior.ColorIndex = titleBgColor
-		.Font.Size = 15
-		.Font.name = "HY견고딕"
-	    End With
-	    Sheet1.Range(Cells(startRow, 1), Cells(startRow, 12)).Merge
+    With Sheet1.Cells(startRow, 1)
+	.Value = "강남구육아종합지원센터"
+	.rowHeight = rowHeight
+	.Interior.ColorIndex = titleBgColor
+	.Font.Size = 15
+	.Font.name = "HY견고딕"
+    End With
+    Sheet1.Range(Cells(startRow, 1), Cells(startRow, 12)).Merge
 
-	    ChoiceSelectBox IE.document.getElementById("EDU_YEAR"), targetYear
-	    For i = 1 To 12
-		ChoiceSelectBox IE.document.getElementById("EDU_MONTH"), i
-		ClickButton IE.document.getElementsByClassName("searchButton")(0)
-		Application.Wait DateAdd("s", 3, Now)
-		j = startRow + 1
-		For Each article In IE.document.getElementById("edu_schedule_list").Children
-		    Set subject = article.getElementsByClassName("subject")(0)
-		    Sheet1.Cells(j, i) = subject.Children(0).innerText
-		    Sheet1.Hyperlinks.Add Sheet1.Cells(j, i), "http://gncare.go.kr" + subject.Children(0).getAttribute("href")
-		    j = j + 1
-		Next
+    ChoiceSelectBox IE.document.getElementById("EDU_YEAR"), targetYear
+    For i = 1 To 12
+	ChoiceSelectBox IE.document.getElementById("EDU_MONTH"), i
+	ClickButton IE.document.getElementsByClassName("searchButton")(0)
+	Application.Wait DateAdd("s", 3, Now)
+	j = startRow + 1
+	For Each article In IE.document.getElementById("edu_schedule_list").Children
+	    Set subject = article.getElementsByClassName("subject")(0)
+	    Sheet1.Cells(j, i) = subject.Children(0).innerText
+	    Sheet1.Hyperlinks.Add Sheet1.Cells(j, i), "http://gncare.go.kr" + subject.Children(0).getAttribute("href")
+	    j = j + 1
+	Next
 
-		Select Case i
-		    Case Is = 1
-			mon1 = j
-		    Case Is = 2
-			mon2 = j
-		    Case Is = 3
-			mon3 = j
-		    Case Is = 4
-			mon4 = j
-		    Case Is = 5
-			mon5 = j
-		    Case Is = 6
-			mon6 = j
-		    Case Is = 7
-			mon7 = j
-		    Case Is = 8
-			mon8 = j
-		    Case Is = 9
-			mon9 = j
-		    Case Is = 10
-			mon10 = j
-		    Case Is = 11
-			mon11 = j
-		    Case Is = 12
-			mon12 = j
-		End Select
-	    Next
+	Select Case i
+	    Case Is = 1
+		mon1 = j
+	    Case Is = 2
+		mon2 = j
+	    Case Is = 3
+		mon3 = j
+	    Case Is = 4
+		mon4 = j
+	    Case Is = 5
+		mon5 = j
+	    Case Is = 6
+		mon6 = j
+	    Case Is = 7
+		mon7 = j
+	    Case Is = 8
+		mon8 = j
+	    Case Is = 9
+		mon9 = j
+	    Case Is = 10
+		mon10 = j
+	    Case Is = 11
+		mon11 = j
+	    Case Is = 12
+		mon12 = j
+	End Select
+    Next
 
-	    ChangeNavigate IE, "http://gncare.go.kr/gnccic/education/education1.php"
-	    Application.Wait DateAdd("s", 1, Now)
-	    ChoiceSelectBox IE.document.getElementById("EDU_YEAR"), targetYear
+    ChangeNavigate IE, "http://gncare.go.kr/gnccic/education/education1.php"
+    Application.Wait DateAdd("s", 1, Now)
+    ChoiceSelectBox IE.document.getElementById("EDU_YEAR"), targetYear
 
-	    temp = 0
-	    For i = 1 To 12
-		ChoiceSelectBox IE.document.getElementById("EDU_MONTH"), i
-		ClickButton IE.document.getElementsByClassName("searchButton")(0)
-		Application.Wait DateAdd("s", 3, Now)
-		Select Case i
-		    Case Is = 1
-			j = mon1
-		    Case Is = 2
-			j = mon2
-		    Case Is = 3
-			j = mon3
-		    Case Is = 4
-			j = mon4
-		    Case Is = 5
-			j = mon5
-		    Case Is = 6
-			j = mon6
-		    Case Is = 7
-			j = mon7
-		    Case Is = 8
-			j = mon8
-		    Case Is = 9
-			j = mon9
-		    Case Is = 10
-			j = mon10
-		    Case Is = 11
-			j = mon11
-		    Case Is = 12
-			j = mon12
-		End Select
+    temp = 0
+    For i = 1 To 12
+	ChoiceSelectBox IE.document.getElementById("EDU_MONTH"), i
+	ClickButton IE.document.getElementsByClassName("searchButton")(0)
+	Application.Wait DateAdd("s", 3, Now)
+	Select Case i
+	    Case Is = 1
+		j = mon1
+	    Case Is = 2
+		j = mon2
+	    Case Is = 3
+		j = mon3
+	    Case Is = 4
+		j = mon4
+	    Case Is = 5
+		j = mon5
+	    Case Is = 6
+		j = mon6
+	    Case Is = 7
+		j = mon7
+	    Case Is = 8
+		j = mon8
+	    Case Is = 9
+		j = mon9
+	    Case Is = 10
+		j = mon10
+	    Case Is = 11
+		j = mon11
+	    Case Is = 12
+		j = mon12
+	End Select
 
-		For Each article In IE.document.getElementById("edu_schedule_list").Children
-		    Set subject = article.getElementsByClassName("subject")(0)
-		    Sheet1.Cells(j, i) = subject.Children(0).innerText
-		    Sheet1.Hyperlinks.Add Sheet1.Cells(j, i), "http://gncare.go.kr" + subject.Children(0).getAttribute("href")
-		    j = j + 1
-		Next
+	For Each article In IE.document.getElementById("edu_schedule_list").Children
+	    Set subject = article.getElementsByClassName("subject")(0)
+	    Sheet1.Cells(j, i) = subject.Children(0).innerText
+	    Sheet1.Hyperlinks.Add Sheet1.Cells(j, i), "http://gncare.go.kr" + subject.Children(0).getAttribute("href")
+	    j = j + 1
+	Next
 
-		If temp < j Then
-		    temp = j
-		End If
-	    Next
+	If temp < j Then
+	    temp = j
+	End If
+    Next
 
-	    With Sheet1.Range(Cells(startRow + 1, 1), Cells(temp - 1, 12)).Borders    '// 구간범위의 선(Borders) 그리기
-		.LineStyle = 1        '// 실선(xlContinuous)으로 그려라
-		.ColorIndex = 14    '// 색상은 http://link2me.tistory.com/260 참조
-		.Weight = xlThin    '// xlThin : 가는 실선, xlThick : 굵은 실선
-	    End With
+    With Sheet1.Range(Cells(startRow + 1, 1), Cells(temp - 1, 12)).Borders    '// 구간범위의 선(Borders) 그리기
+	.LineStyle = 1        '// 실선(xlContinuous)으로 그려라
+	.ColorIndex = 14    '// 색상은 http://link2me.tistory.com/260 참조
+	.Weight = xlThin    '// xlThin : 가는 실선, xlThick : 굵은 실선
+    End With
 
-	    startRow = temp
-	End Sub
+    startRow = temp
+End Sub
 
-	Sub IE_Automation()
+Sub IE_Automation()
 
-	    ' 변수 선언
-	    Dim i As Long
-	    Dim o As Object
-	    Dim IE As Object
-	    Dim objCollection As Object
-	    Dim objInputElement As Object
-	    Dim objSelectElement As Object
-	    Dim objButtonElement As Object
+    ' 변수 선언
+    Dim i As Long
+    Dim o As Object
+    Dim IE As Object
+    Dim objCollection As Object
+    Dim objInputElement As Object
+    Dim objSelectElement As Object
+    Dim objButtonElement As Object
 
-	    ' Internet Explorer 열기
-	    Set IE = CreateObject("InternetExplorer.Application")
-	    IE.Top = 0
-	    IE.Left = 0
-	    IE.Height = 1000
-	    IE.Width = 1600
-	    IE.Visible = True
-	    IE.navigate "C:\Users\test\Desktop\main.html"
+    ' Internet Explorer 열기
+    Set IE = CreateObject("InternetExplorer.Application")
+    IE.Top = 0
+    IE.Left = 0
+    IE.Height = 1000
+    IE.Width = 1600
+    IE.Visible = True
+    IE.navigate "C:\Users\test\Desktop\main.html"
 
-	    ' 페이지 로드 대기
-	    Do While IE.Busy
-		Application.Wait DateAdd("s", 1, Now)
-	    Loop
-	    Debug.Print "페이지 로드 완료"
+    ' 페이지 로드 대기
+    Do While IE.Busy
+	Application.Wait DateAdd("s", 1, Now)
+    Loop
+    Debug.Print "페이지 로드 완료"
 
-	    ' textbox에 값 입력
-	    Set objInputElement = IE.document.getElementsByName("name")(0)
-	    objInputElement.Value = "문타리"
+    ' textbox에 값 입력
+    Set objInputElement = IE.document.getElementsByName("name")(0)
+    objInputElement.Value = "문타리"
 
-	    ' selectbox 선택하기
-	    Set objSelectElement = IE.document.getElementById("age")
-	    For Each o In objSelectElement.Options
-		If o.Value = "30" Then
-		    o.Selected = True
-		    Exit For
-		End If
-	    Next
+    ' selectbox 선택하기
+    Set objSelectElement = IE.document.getElementById("age")
+    For Each o In objSelectElement.Options
+	If o.Value = "30" Then
+	    o.Selected = True
+	    Exit For
+	End If
+    Next
 
-	    ' 스크립트 재정의
-	    With IE.document.parentWindow
-		.execScript "window.alert = function(){return true;};", "JScript"
-		.execScript "window.showModalDialog = function(){return 'Success';};", "JScript"
-	    End With
+    ' 스크립트 재정의
+    With IE.document.parentWindow
+	.execScript "window.alert = function(){return true;};", "JScript"
+	.execScript "window.showModalDialog = function(){return 'Success';};", "JScript"
+    End With
 
-	    ' button 클릭
-	    Set objCollection = IE.document.getElementsByTagName("button")
-	    i = 0
-	    While i < objCollection.Length
-		If objCollection(i).innerText = "제출" Then
-		    Set objButtonElement = objCollection(i)
-		End If
-		i = i + 1
-	    Wend
-	    objButtonElement.Click
+    ' button 클릭
+    Set objCollection = IE.document.getElementsByTagName("button")
+    i = 0
+    While i < objCollection.Length
+	If objCollection(i).innerText = "제출" Then
+	    Set objButtonElement = objCollection(i)
+	End If
+	i = i + 1
+    Wend
+    objButtonElement.Click
 
-	    ' Internet Explorer 닫기
-	    IE.Quit
+    ' Internet Explorer 닫기
+    IE.Quit
 
-	End Sub
+End Sub
 
-	Function OpenIE(ByRef IE As Object)
-	    Set IE = CreateObject("InternetExplorer.Application")
-	End Function
+Function OpenIE(ByRef IE As Object)
+    Set IE = CreateObject("InternetExplorer.Application")
+End Function
 
-	Function ChangeNavigate(ByRef IE As Object, ByVal url As String)
-	    With IE
-		.navigate url
-		.Visible = True
-	    End With
+Function ChangeNavigate(ByRef IE As Object, ByVal url As String)
+    With IE
+	.navigate url
+	.Visible = True
+    End With
 
-	    WaitIE IE
-	End Function
+    WaitIE IE
+End Function
 
-	Function WaitIE(ByRef IE As Object)
-	    Do While IE.Busy
-		Application.Wait DateAdd("s", 1, Now)
-	    Loop
-	    'Debug.Print "페이지 로드 완료"
+Function WaitIE(ByRef IE As Object)
+    Do While IE.Busy
+	Application.Wait DateAdd("s", 1, Now)
+    Loop
+    'Debug.Print "페이지 로드 완료"
 
-	    'Do While IE.readyState <> 4
-	    '    DoEvents
-	    'Loop
-	End Function
+    'Do While IE.readyState <> 4
+    '    DoEvents
+    'Loop
+End Function
 
-	Function CloseIE(ByRef IE As Object)
-	    IE.Quit
-	End Function
+Function CloseIE(ByRef IE As Object)
+    IE.Quit
+End Function
 
-	Function ChoiceSelectBox(ByRef selectElement As Object, ByVal selectValue As String)
-	    'Set objSelectElement = IE.document.getElementById("age")
-	    For Each o In selectElement.Options
-		If o.Value = selectValue Then
-		    o.Selected = True
-		    Exit For
-		End If
-	    Next
-	End Function
+Function ChoiceSelectBox(ByRef selectElement As Object, ByVal selectValue As String)
+    'Set objSelectElement = IE.document.getElementById("age")
+    For Each o In selectElement.Options
+	If o.Value = selectValue Then
+	    o.Selected = True
+	    Exit For
+	End If
+    Next
+End Function
 
-	Function ClickButton(ByRef buttonElement)
-	    buttonElement.Click
-	End Function
+Function ClickButton(ByRef buttonElement)
+    buttonElement.Click
+End Function
     </pre>
 </body>
 </html>
