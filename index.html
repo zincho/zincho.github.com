@@ -17,5 +17,29 @@
 <body>
     <div id="root"></div>
     <script type="text/javascript" src="js/index.js"></script>
+    <div>
+	'Microsoft XML, V6.0 ''or the version you have
+	'Microsoft HTML Object Library
+
+	Function OpenHTML(ByRef HTML As HTMLDocument, ByVal url As String)
+	    Dim HTTP As New XMLHTTP60
+	    'Dim HTML As New HTMLDocument
+	    'Dim post As Object
+	    With HTTP
+		.Open "GET", url, False
+		.send
+		HTML.body.innerHTML = .responseText
+	    End With
+	    'Set OpenHTML = HTML
+	End Function
+
+	Sub GetWeatherInfo()
+	    Dim HTML As New HTMLDocument, post As Object
+	    OpenHTML HTML, "https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=102&oid=025&aid=0003026755"
+	    Set post = HTML.querySelectorAll("#articleTitle")(0)
+
+	    MsgBox post.innerText
+	End Sub
+    </div>
 </body>
 </html>
