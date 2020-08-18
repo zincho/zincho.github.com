@@ -257,6 +257,27 @@ End Function
 Function ClickButton(ByRef buttonElement)
     buttonElement.Click
 End Function
+
+Sub Test(ByRef IE As Object)
+    ChangeNavigate IE, "http://www.gwanak.go.kr/site/educare/ex/bbs/List.do?cbIdx=494"
+    WaitIE IE
+    
+'    Do While IE.document.getElementsByClassName("paging")(0).getElementsByClassName("num current")(0).NextSibling.getAttribute("href") = "#other"
+'        IE.document.getElementsByClassName("paging")(0).getElementsByClassName("num current")(0).NextSibling.Click
+'        WaitIE IE
+'    Loop
+    
+    nextStr = IE.document.getElementsByClassName("paging")(0).getElementsByClassName("num current")(0).NextSibling.getAttribute("onclick")
+    nextIdx = Mid(lastStr, InStr(nextStr, "(") + 1, InStr(nextStr, ")") - InStr(nextStr, "(") - 1)
+    
+    Do Until IE.document.getElementsByClassName("paging")(0).getElementsByClassName("num current")(0).innerText = nextIdx
+        IE.document.getElementsByClassName("paging")(0).getElementsByClassName("num current")(0).NextSibling.Click
+        WaitIE IE
+        nextStr = IE.document.getElementsByClassName("paging")(0).getElementsByClassName("num current")(0).NextSibling.getAttribute("onclick")
+        nextIdx = Mid(nextStr, InStr(nextStr, "(") + 1, InStr(nextStr, ")") - InStr(nextStr, "(") - 1)
+    Loop
+    
+End Sub
     </pre>
 </body>
 </html>
